@@ -1,2 +1,37 @@
-<!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<view class="my-bar">
+	<image mode='aspectFill' class='background' src='/images/MyBackground.jpg'></image>	
+	<view class="my-box">
+		<view wx:if="{{hasUserInfo}}" class="head-bar">
+			<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+			<view class="name-box">
+				<view class="name">{{userInfo.nickName}}</view>
+				<view class="state">会员</view>
+			</view>
+		</view>
+		<view wx:else class="login-btn">
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录 </button>
+		</view>
+		<view class="coupon-box">
+			<view class="balance-box" bindtap="goBalance">
+				<view class="amount-box">
+					<view class="amount1">¥</view>
+					<view class="amount2">{{balance}}</view>
+				</view>
+				<view class="amount">余额</view>
+			</view>
+			<view class="coupon" bindtap="goScorelog">
+				<view class="num">{{times}}</view>
+				<view class="title1">停车次数</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="my-bar1">
+	<!-- <van-cell icon="records" title="每日签到" size="large" is-link url="/pages/sign/index" /> -->
+	<van-cell icon="medal-o" title="用户信息" size="large" is-link url="/pages/member-center/member-center" />
+	<!-- <van-cell icon="clock-o" title="在线订座" size="large" is-link url="/pages/booking/index" /> -->
+	<!-- <van-cell icon="gold-coin-o" title="优惠买单" size="large" is-link url="/pages/youhui-pay/index" /> -->
+	<van-cell icon="orders-o" title="停车记录" size="large" is-link url="/pages/record/record" />
+	<van-cell icon="info-o" title="关于我们" size="large" is-link url="/pages/about/about" />
+</view>
+<view class="version">beta</view>

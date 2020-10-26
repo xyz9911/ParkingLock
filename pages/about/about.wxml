@@ -1,0 +1,2 @@
+<van-panel title="项目名称" desc="项目成员：" status="共享车位锁" use-footer-slot>
+</van-panel>

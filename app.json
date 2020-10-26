@@ -1,16 +1,19 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/images/images",
     "pages/search/search",
     "pages/mine/mine",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/about/about",
+    "pages/record/record",
+    "pages/member-center/member-center"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#00ffff",
     "navigationBarTitleText": "微信小程序",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "list": [
@@ -39,6 +42,35 @@
         "selectedIconPath": "icon/my.png"
       }
     ]
+  },
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-card": "@vant/weapp/card/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-panel": "@vant/weapp/panel/index",
+    "van-sidebar": "@vant/weapp/sidebar/index",
+    "van-sidebar-item": "@vant/weapp/sidebar-item/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-submit-bar": "@vant/weapp/submit-bar/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-overlay": "@vant/weapp/overlay/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+    "van-calendar": "@vant/weapp/calendar/index",
+    "van-tag": "@vant/weapp/tag/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
