@@ -1,0 +1,42 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/Home/Home",
+        "text": "主页",
+        "iconPath": "/asset/image/MeiShiJia_gray.png",
+        "selectedIconPath": "asset/image/MeiShiJia.png"
+      },
+      {
+        "pagePath": "pages/Dinning/Dinning",
+        "text": "智慧饮食",
+        "iconPath": "/asset/image/MeiShiJia_gray.png",
+        "selectedIconPath": "asset/image/MeiShiJia.png"
+      },
+      {
+        "pagePath": "pages/Order/Order",
+        "text": "下单",
+        "iconPath": "/asset/image/Group_gray.png",
+        "selectedIconPath": "/asset/image/Group.png"
+      },
+      {
+        "pagePath": "pages/Account/Account",
+        "text": "个人中心",
+        "iconPath": "/asset/image/MeiShiJia_gray.png",
+        "selectedIconPath": "/asset/image/Bath.png"
+      }
+    ]
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle":"black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
