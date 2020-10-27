@@ -31,10 +31,9 @@
           </cover-view>
         </block>
   </cover-view>
-    <!-- 将“停止使用”显示在地图中
-  <view class="container">  
+  <view class="end-button">  
     <button type='primary' hidden="{{buttonHidden}}" bindtap='confirm_modalBindaconfirm'>结束使用</button>
-  </view> -->
+  </view>
 </map>
 
   <view >
@@ -60,7 +59,4 @@
     Time:{{num}} (秒)
   </span> -->
   <!-- 结束使用按钮，待用户选中车位锁后显示 -->
-  <view class="container">  
-    <button type='primary' hidden="{{buttonHidden}}" bindtap='confirm_modalBindaconfirm'>结束使用</button>
-  </view>
 </view>

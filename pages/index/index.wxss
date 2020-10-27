@@ -52,3 +52,7 @@
   color: gray;
   font-size: 28rpx;
 }
+
+.end-button {
+  margin-top: 700rpx;
+}
