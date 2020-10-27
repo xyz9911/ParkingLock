@@ -17,6 +17,8 @@ const normalCallout = {
     borderColor: '#000000',
     bgColor: '#fff',
     padding: 5,
+    anchorY: 20,
+    anchorX: 0,
     display: 'ALWAYS',
     textAlign: 'center'
   }
@@ -41,6 +43,8 @@ const customCallout1 = {
     borderColor: '#000000',
     bgColor: '#fff',
     padding: 5,
+    anchorY: 20,
+    anchorX: 0,
     display: 'ALWAYS',
     textAlign: 'center'
   }
@@ -65,6 +69,8 @@ const customCallout2 = {
     borderColor: '#000000',
     bgColor: '#fff',
     padding: 5,
+    anchorY: 20,
+    anchorX: 0,
     display: 'ALWAYS',
     textAlign: 'center'
   }
@@ -84,6 +90,8 @@ const customCallout3 = {
     borderColor: '#000000',
     bgColor: '#fff',
     padding: 5,
+    anchorY: 20,
+    anchorX: 0,
     display: 'ALWAYS',
     textAlign: 'center'
   }
@@ -120,17 +128,17 @@ Page({
       width: 2,
       dottedLine: true
     }],
-    controls: [{
-      id: 1,
-      iconPath: '/icon/location.png',
-      position: {
-        left: 0,
-        top: 300 - 50,
-        width: 50,
-        height: 50
-      },
-      clickable: true
-    }]
+    // controls: [{
+    //   id: 1,
+    //   iconPath: '/icon/location.png',
+    //   position: {
+    //     left: 0,
+    //     top: 300 - 50,
+    //     width: 50,
+    //     height: 50
+    //   },
+    //   clickable: true
+    // }]
   },
 
   regionchange(e) {
