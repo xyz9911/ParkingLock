@@ -19,7 +19,7 @@
   bindmarkertap="markertap" 
   polyline="{{polyline}}"
   bindregionchange="regionchange" 
-  show-location style="width: 100%; height: 370px;">
+  show-location style="width: 100%; height: 500px;">
 
   <cover-view slot="callout">
         <block wx:for="{{customCalloutMarkerIds}}" wx:key="*this">
