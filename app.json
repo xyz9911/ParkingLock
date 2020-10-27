@@ -11,7 +11,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#00ffff",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "微信小程序",
     "navigationBarTextStyle": "black"
   },
@@ -19,21 +19,9 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "icon/_home.png",
+        "iconPath": "icon/_Locked-Parking.png",
         "text": "首页",
-        "selectedIconPath": "icon/home.png"
-      },
-      {
-        "pagePath": "pages/images/images",
-        "iconPath": "icon/_img.png",
-        "text": "图片",
-        "selectedIconPath": "icon/img.png"
-      },
-      {
-        "pagePath": "pages/search/search",
-        "iconPath": "icon/_search.png",
-        "text": "搜索",
-        "selectedIconPath": "icon/search.png"
+        "selectedIconPath": "icon/Locked-Parking.png"
       },
       {
         "pagePath": "pages/mine/mine",
