@@ -1,12 +1,10 @@
-const WXAPI = require('apifm-wxapi')
-const AUTH = require('../../utils/auth')
-const APP = getApp()
-APP.configLoadOK = () => {
-  
-}
-
 Page({
   data: {
+    userInfo: {
+      userName: '小章',
+      mobile: '13301637173',
+      address: '哈工大威海11公寓'
+    },
     addressList: [],
     addressEdit: false,
     cancelBtn: false,
@@ -33,91 +31,7 @@ Page({
     })
   },
   // 编辑地址
-  async editAddress(e) {
-    // wx.navigateTo({
-    //   url: "/pages/address-add/index?id=" + e.currentTarget.dataset.id
-    // })
-    var id = e.currentTarget.dataset.id    
-    this.setData({ 
-      addressEdit: true,
-      cancelBtn: false,
-      id:id,
-    })
-    if (id) { // 修改初始化数据库数据
-      const res = await WXAPI.addressDetail(wx.getStorageSync('token'), id)
-      if (res.code == 0) {
-        var addressData = res.data.info
-        console.log(addressData)
-        var address = addressData.address        
-        var pname = addressData.provinceStr
-        var cname = addressData.cityStr
-        var dname = addressData.areaStr
-        // 
-        var provinceId = addressData.provinceId
-        var cityId = addressData.cityId
-        var districtId = addressData.districtId
-
-        this.setData({
-          id: id,
-          addressData: res.data.info,  
-          address: res.data.info.address,        
-          pname: pname,
-          cname: cname,
-          dname: dname,
-          provinceId: provinceId,
-          cityId: cityId,
-          districtId: districtId,
-        })
-        // console.log(addressData)        
-        this.initRegionDB(pname,cname,dname)
-        this.provinces(provinceId,cityId,districtId) 
-               
-      } else {
-        wx.showModal({
-          title: '错误',
-          content: '无法获取快递地址数据',
-          showCancel: false
-        })
-      }
-    } else {
-      this.initRegionPicker()
-    }  
-    
-  }, 
-  // 选中地址
-  selectTap: function(e) {
-    var id = e.currentTarget.dataset.id;
-    WXAPI.updateAddress({
-      token: wx.getStorageSync('token'),
-      id: id,
-      isDefault: 'true'
-    }).then(function(res) {
-      wx.navigateBack({})
-    })
-  },
   // 删除地址按钮
-  deleteAddress: function (e) {
-    const _this = this
-    const id = e.currentTarget.dataset.id;
-    console.log(id)
-    wx.showModal({
-      title: '提示',
-      content: '确定要删除该收货地址吗？',
-      success: function (res) {
-        if (res.confirm) {
-          WXAPI.deleteAddress(wx.getStorageSync('token'), id).then(function () {
-            _this.setData({
-              addressEdit: false,
-              cancelBtn: false,
-            })
-            _this.initShippingAddress()
-          })
-        } else {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
   // 微信读取
   readFromWx : function () {
     const _this = this
@@ -298,152 +212,37 @@ Page({
     })  
     
   },
-  linkManChange(e) {
-    const addressData = this.data.addressData
-    addressData.linkMan = e.detail
+  usernameChange(e) {
+    const userInfo = this.data.userInfo
+    userInfo.userName = e.detail
     this.setData({
-      addressData
+       userInfo
     })
   },
   mobileChange(e) {
-    const addressData = this.data.addressData
-    addressData.mobile = e.detail
+    const userInfo = this.data.userInfo
+    userInfo.mobile = e.detail
     this.setData({
-      addressData
+      userInfo
     })
   },
   addressChange(e) {
-    const addressData = this.data.addressData
-    addressData.address = e.detail
+    const userInfo = this.data.userInfo
+    userInfo.address = e.detail
     this.setData({
-      addressData
+      userInfo
     })
   },
   // 保存按钮
-  async bindSave() {    
-    const pObject = this.data.pObject
-    const cObject = this.data.cObject
-    const dObject = this.data.dObject
-    const linkMan = this.data.addressData.linkMan
-    const address = this.data.addressData.address
-    const mobile = this.data.addressData.mobile
-
-    if (!linkMan){
-      wx.showToast({
-        title: '请填写用户姓名',
-        icon: 'none',        
-      })
-      return
-    }
-    if (!mobile){
-      wx.showToast({
-        title: '请填写手机号码',
-        icon: 'none',        
-      })
-      return
-    }
-    if (!this.data.pObject || !this.data.cObject || !this.data.dObject){
-      wx.showToast({
-        title: '请选择行政区划',
-        icon: 'none',        
-      })
-      return
-    }
-    if (!address){
-      wx.showToast({
-        title: '请填写详细地址',
-        icon: 'none',       
-      })
-      return
-    }
-    
-    const postData = {
-      token: wx.getStorageSync('token'),
-      linkMan: linkMan,
-      address: address,
-      mobile: mobile,
-      isDefault: 'true',
-    }     
-
-    // console.log(this.data.pIndex)
-    // console.log(this.data.cIndex)
-    // console.log(this.data.aIndex)
-
-    postData.provinceId = pObject.id
-    postData.cityId = cObject.id  
-    postData.districtId = dObject.id
-
-    // if (this.data.pIndex >= 0) {
-    //   postData.provinceId = pObject.id    
-    // }
-    // if (this.data.cIndex >= 0) {
-    //   postData.cityId = cObject.id  
-    // }
-    // if (this.data.aIndex >= 0) {
-    //   postData.districtId = dObject.id  
-    // }    
-    let apiResult
-    console.log(this.data.id)
-    if (this.data.id) {
-      postData.id = this.data.id
-      apiResult = await WXAPI.updateAddress(postData)
-    } else {
-      apiResult = await WXAPI.addAddress(postData)
-    }
-    if (apiResult.code != 0) {
-      // 登录错误 
-      wx.hideLoading();
-      wx.showToast({
-        title: apiResult.msg,
-        icon: 'none'
-      })
-      return;
-    } else {
-      this.setData({
-        addressEdit: false,
-        cancelBtn: false,
-      })
-      this.initShippingAddress()
-    }    
+  async bindSave() {
+    wx.navigateBack({
+      delta: 0,
+    })
     
   },
-  onLoad: function (e) {    
-    const _this = this
-    _this.initRegionPicker() // 初始化省市区选择器
-    if (e.id) { // 修改初始化数据库数据
-      WXAPI.addressDetail(e.id, wx.getStorageSync('token')).then(function (res) {
-        if (res.code === 0) {
-          _this.setData({
-            id: e.id,
-            addressData: res.data,
-            showRegionStr: res.data.provinceStr + res.data.cityStr + res.data.areaStr
-          });
-          _this.initRegionDB(res.data.provinceStr, res.data.cityStr, res.data.areaStr)
-          return;
-        } else {
-          wx.showModal({
-            title: '提示',
-            content: '无法获取快递地址数据',
-            showCancel: false
-          })
-        }
-      })
-    }
+  onLoad: function (e) {
   },
   onShow: function() {
-    AUTH.checkHasLogined().then(isLogined => {
-      if (isLogined) {
-        this.initShippingAddress();
-      } else {
-        wx.showModal({
-          content: '登陆后才能访问',
-          showCancel: false,
-          success: () => {
-            wx.navigateBack()
-          }
-        })
-      }
-    })
   },  
   
   // 判断电话号码格式

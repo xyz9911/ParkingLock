@@ -134,7 +134,7 @@ page{
   font-size: 30rpx;
   line-height: 90rpx;
   color: white;
-  background: #e64340;
+  background: #00a71c;
 
 }
 .cancel-btn{
