@@ -19,7 +19,7 @@
   bindmarkertap="markertap" 
   polyline="{{polyline}}"
   bindregionchange="regionchange" 
-  show-location style="width: 100%; height: 500px;">
+  show-location style="width: 100%; height: 450px;">
 
   <cover-view slot="callout">
         <block wx:for="{{customCalloutMarkerIds}}" wx:key="*this">
@@ -31,6 +31,10 @@
           </cover-view>
         </block>
   </cover-view>
+    <!-- 将“停止使用”显示在地图中
+  <view class="container">  
+    <button type='primary' hidden="{{buttonHidden}}" bindtap='confirm_modalBindaconfirm'>结束使用</button>
+  </view> -->
 </map>
 
   <view >
@@ -55,7 +59,8 @@
   <!-- <span>
     Time:{{num}} (秒)
   </span> -->
-  <view class="container">
+  <!-- 结束使用按钮，待用户选中车位锁后显示 -->
+  <view class="container">  
     <button type='primary' hidden="{{buttonHidden}}" bindtap='confirm_modalBindaconfirm'>结束使用</button>
   </view>
 </view>
