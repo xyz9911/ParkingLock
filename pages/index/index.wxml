@@ -1,13 +1,52 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <map id="map" 
+  longitude="122.077785" 
+  latitude="37.528536" 
+  scale="14" 
+  controls="{{controls}}"
+  bindcontroltap="controltap"
+  markers="{{markers}}"
+  bindmarkertap="markertap" 
+  polyline="{{polyline}}"
+  bindregionchange="regionchange" 
+  show-location style="width: 100%; height: 300px;">
+
+  <cover-view slot="callout">
+        <block wx:for="{{customCalloutMarkerIds}}" wx:key="*this">
+          <cover-view  class="customCallout" marker-id="{{item}}" >
+            <!-- <cover-image class="icon" src="/icon/my.png"></cover-image> -->
+            <cover-view class="content"> 
+              {{num}}-{{item}}-{{index}}
+            </cover-view>
+          </cover-view>
+        </block>
+  </cover-view>
+</map>
+
+  <view >
+      <modal title="提示" hidden="{{modalHidden}}" confirm-text="确定"
+      cancel-text="取消" bindconfirm="modalBindaconfirm" bindcancel="modalBindcancel">
+      <view class="query">
+        <span>确认要租用N{{chosennum}}号车位锁吗?</span>
+      </view>
+      </modal>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view >
+      <modal title="提示" hidden="{{confirm_modalHidden}}" confirm-text="确定" bindconfirm="confirm_modalBindaconfirm">
+        <view class="charge_result">
+          <view>使用时间：{{num}}秒</view>
+          <view>费用:{{num*2}} 元</view>
+          <view>感谢您的使用!</view>
+        </view>
+      </modal>
+  </view>
+
+
+  <!-- <span>
+    Time:{{num}} (秒)
+  </span> -->
+  <view class="container">
+    <button type='primary' hidden="{{buttonHidden}}" bindtap='confirm_modalBindaconfirm'>结束使用</button>
   </view>
 </view>
