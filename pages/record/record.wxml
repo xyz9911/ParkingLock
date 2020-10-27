@@ -1,0 +1,26 @@
+<view class="container">
+	<view wx:if="{{!orderList}}" class="no-order">
+		<view class="content-1">您还没有停车记录</view>
+		<view class="content-2">现在有停车的需要吗？</view>
+		<view class="to-index-btn" bindtap="toIndexPage">去停车</view>
+	</view>
+
+	<view wx:if="{{orderList}}" class="order-list">
+		<view class="a-order" wx:for="{{orderList}}" wx:key="index">
+			<view class="order-info-box">
+				<view class="l">
+          <view>停车地点：{{item.place}}</view>
+					<view>停车时间：{{item.dateAdd}}</view>
+					<view>订单编号：{{item.id}}</view>
+				</view>
+				<view class="r"><text>¥</text>{{item.amountReal}}</view>
+			</view>
+			<view class="price-box">
+				<van-button wx:if="{{item.status > 0}}" type="primary" size="small" bind:click="callShop">联系客服</van-button>
+				<van-button wx:if="{{item.status== -1}}" type="danger" size="small" bind:click="deleteOrder" data-id="{{item.id}}">删除订单</van-button>
+				<van-button wx:if="{{item.status== 0}}" type="primary" size="small" bind:click="toPayTap" data-id="{{item.id}}" data-money="{{item.amountReal}}">立即支付</van-button>
+			</view>
+		</view>
+	</view>
+	<view class="safeAreaOldMarginBttom safeAreaNewMarginBttom"></view>
+</view>
