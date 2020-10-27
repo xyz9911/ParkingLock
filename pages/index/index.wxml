@@ -1,4 +1,13 @@
 <!--index.wxml-->
+<view class="objectDetail"  bindtap='onclickTask'>
+    <view style="display:flex; margin-bottom:20rpx;">
+      <image mode="aspectFill" src="/images/carPark.jpg" style="width: 350rpx; height: 200rpx;" />
+      <view class="title_content">
+        <text style="font-size:36rpx; text-align: left; margin-top :10rpx;">共享车位锁小程序</text>
+        <text class="subtext" style="margin-top: 10rpx; text-align: left;">提供锁车服务</text>
+      </view>
+    </view>
+  </view>
 <view class="container">
   <map id="map" 
   longitude="122.077785" 
@@ -10,7 +19,7 @@
   bindmarkertap="markertap" 
   polyline="{{polyline}}"
   bindregionchange="regionchange" 
-  show-location style="width: 100%; height: 300px;">
+  show-location style="width: 100%; height: 370px;">
 
   <cover-view slot="callout">
         <block wx:for="{{customCalloutMarkerIds}}" wx:key="*this">
